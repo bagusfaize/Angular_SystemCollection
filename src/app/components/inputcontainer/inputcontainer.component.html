@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-4 text-center">
+      <form class="text-center bg-white mt-5 p-5 rounded shadow-sm" (ngSubmit)="onSubmit(containerAccount)">
+        <p class="h5 mb-4">Add Container Account</p>
+        <input [(ngModel)]="containerAccount.cif" name="cif" class="form-control mb-4 rounded" placeholder="CIF"/>
+        <input [(ngModel)]="containerAccount.loan_number" name="loan_id" class="form-control mb-4 rounded" placeholder="Loan Id"/>
+        <input style="display: none;" [value]="0" [(ngModel)]="containerAccount.balance" name="balance" class="form-control mb-4 rounded" placeholder="Balance" type="number"/>
+        <button class="btn btn-primary btn-block rounded bg-main" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

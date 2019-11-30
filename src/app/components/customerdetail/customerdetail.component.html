@@ -1,0 +1,53 @@
+<div class="container p-5">
+  <div class="row">
+    <div class="col pl-5">
+      <div class="card detail rounded borderless shadow-sm">
+        <div class="title p-4">Detail Information</div>
+        <div class="content p-3">
+          <form [formGroup]="caForm" class="container">
+            <table class="table table-detail">
+              <tbody>
+                <tr>
+                  <th scope="row">Cif</th>
+                  <td><input formControlName="cif" type="text" class="form-control borderless" placeholder="cif"
+                      disabled></td>
+                </tr>
+                <tr>
+                  <th scope="row">Loan Number</th>
+                  <td><input formControlName="loan_number"  type="text" class="form-control borderless"
+                      placeholder="loan_number" disabled></td>
+                </tr>
+                <tr>
+                    <th scope="row">Balance</th>
+                    <td><input formControlName="balance" type="text" class="form-control borderless" placeholder="balance"
+                        disabled></td>
+                  </tr>
+                  <tr>
+                      <th scope="row">Date Created</th>
+                      <td><input formControlName="createdAt" type="text" class="form-control borderless" placeholder="createdAt"
+                          disabled></td>
+                    </tr>
+              </tbody>
+            </table>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- INPUT PAYMENT -->
+    <div class="col-5 p-5">
+      <h4 class="py-3">Input Payment</h4>
+      <p>Default payments are listed in the detail information. You can pay as much as you want</p>
+      <form [formGroup]="inputForm" (ngSubmit)="onSubmit(payment)">   
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text bg-light">Rp</span>
+        </div>
+        <input type="number" [(ngModel)]="payment.pay_today" name="pay_today" formControlName="pay_today" class="form-control" value="0">
+        <input type="text" style="display: none;" [(ngModel)]="payment.cif" name="cif" formControlName="cif" class="form-control" >
+        <input style="display: none;" type="number" [(ngModel)]="payment.container_id" name="container_id" formControlName="container_id" class="form-control" >
+        <button class="btn btn-primary btn-block rounded bg-main mt-2" type="submit">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

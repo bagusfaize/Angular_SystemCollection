@@ -1,0 +1,54 @@
+<div class="container mt-4" align="center">
+    <div class="row pt-5">
+        <div class="col">
+          <h4 class="pt-2 pr-3 mr-5">Loan List</h4>
+        </div>
+        <div class="col-2"></div>
+        <div class="col">
+          <div class="p-1 bg-white rounded shadow-sm mb-4 col-6">
+            <div class="input-group">
+              <input type="search" placeholder="Search loan . . ." aria-describedby="button-addon1"
+                class="form-control border-0 bg-white search-small" name="keyword" [(ngModel)]="keyword"
+                (keyup)="getSearch(keyword)">
+              <div class="input-group-append">
+                <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i
+                    class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="col-10">
+    <table class="table table-bordered bg-white rounded table-hover shadow-sm">
+    <thead class="text-center bg-main text-white rounded">
+        <tr class="rounded">
+            <td class="top-left-rounded">Loan Code</td>
+            <td>Cif</td>
+            <td>Amount</td>
+            <td>Balance</td>
+            <td>Open Date</td>            
+            <td>Due Date</td>
+            <td class="top-right-rounded">Tenor</td>
+        </tr>
+    </thead>
+        <tbody>
+          <div *ngIf="loading else loaded">
+              <div class="lds-css ng-scope"><div style="width:100%;height:100%" class="lds-rolling"><div></div></div>
+              <link rel="stylesheet" href="../../../assets/style/loading.css"></div>
+          </div>
+          <ng-template #loaded>
+            <tr *ngFor="let data of loan | paginate: { itemsPerPage: 5, currentPage: p }">
+                <td>{{data.loan_type_code}}</td>
+                <td>{{data.cif}}</td>
+                <td>Rp.{{data.amount | number :'1.1-1'  }}</td>
+                <td>Rp.{{data.balance | number :'1.1-1'  }}</td>
+                <td>{{data.open_date | date : 'dd-MM-yyyy'}}</td>
+                <td>{{data.due_date | date : 'dd-MM-yyyy'}}</td>
+                <td>{{data.tenor}}</td>                        
+            </tr>
+          </ng-template>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="p = $event" ></pagination-controls>
+</div>
+</div>
